@@ -1,4 +1,5 @@
 window.addEventListener("DOMContentLoaded", () => {
+
   console.log("DOM fully loaded");
   const modalTrigger = document.querySelectorAll('.settings-trigger');
   const modalOverlay = document.querySelector('.settings__overlay ');
@@ -6,6 +7,18 @@ window.addEventListener("DOMContentLoaded", () => {
   const wrapper = document.querySelector('.settings__wrapper');
   const modalClose = document.querySelector('.settings__modal--close');
   const section = document.querySelector('.settings');
+
+  function closePopup() {
+    modalOverlay.classList.remove('settings__overlay--visible');
+    modals.forEach(el => {
+      el.classList.remove('settings__modal--visible');
+    });
+    wrapper.classList.remove('settings__wrapper--hidden');
+    if (section.style.backgroundColor = "rgba(45, 45, 45, 0.75)") {
+      section.style.backgroundColor = "#2D2D2D";
+    }
+  }
+
   modalTrigger.forEach(el => {
     el.addEventListener('click', e => {
       e.preventDefault();
@@ -21,27 +34,13 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
   modalOverlay.addEventListener('click', e => {
     if (e.target == modalOverlay) {
-      modalOverlay.classList.remove('settings__overlay--visible');
-      modals.forEach(el => {
-        el.classList.remove('settings__modal--visible');
-      });
-      wrapper.classList.remove('settings__wrapper--hidden');
-      if (section.style.backgroundColor = "rgba(45, 45, 45, 0.75)") {
-        section.style.backgroundColor = "#2D2D2D";
-      }
+      closePopup()
     }
   });
-  modalClose.addEventListener('click', () => {
-    modalOverlay.classList.remove('settings__overlay--visible');
-    modals.forEach(el => {
-      el.classList.remove('settings__modal--visible');
-    });
-    wrapper.classList.remove('settings__wrapper--hidden');
-    if (section.style.backgroundColor = "rgba(45, 45, 45, 0.75)") {
-      section.style.backgroundColor = "#2D2D2D";
-    }
-  });
+
+  modalClose.addEventListener('click', closePopup)
 
 });
