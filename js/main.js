@@ -41,6 +41,6 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  modalClose.addEventListener('click', closePopup)
+  modalClose.addEventListener('click', closePopup);
 
 });
